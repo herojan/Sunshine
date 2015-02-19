@@ -1,5 +1,6 @@
 package com.herojan.sunshine;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -28,12 +29,14 @@ public class MainActivity extends ActionBarActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId()){
+            case R.id.action_settings:
+                Intent settingsIntent = new Intent(this, SettingsActivity.class);
+                //settingsIntent.putExtra(Intent.EXTRA_TEXT, forecast);
+                startActivity(settingsIntent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-
-        return super.onOptionsItemSelected(item);
     }
 }
