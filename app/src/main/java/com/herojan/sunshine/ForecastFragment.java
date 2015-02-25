@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.text.format.Time;
@@ -89,7 +90,7 @@ public class ForecastFragment extends Fragment {
         switch (item.getItemId()) {
             case R.id.action_refresh:
                 FragmentActivity activity = getActivity();
-                SharedPreferences preferences = activity.getPreferences(activity.MODE_PRIVATE);
+                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
                 String locationPreference = preferences.getString(activity.getString(R.string.pref_location_key), activity.getString(R.string.pref_location_default));
                 (new FetchWeatherTask()).execute(locationPreference);
                 return true;
